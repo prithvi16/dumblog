@@ -1,2 +1,5 @@
 =@post.title
 =@post.body
+
+%li= link_to "edit", edit_post_path
+%li= link_to "delete", post_path(@post),method: :delete
