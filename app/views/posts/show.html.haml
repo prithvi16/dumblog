@@ -1,5 +1,14 @@
-=@post.title
-=markdown (@post.body)
 
-%li= link_to "edit", edit_post_path
-%li= link_to "delete", post_path(@post),method: :delete
+
+
+%h1.title=@post.title
+%br
+
+%a{:href => edit_post_path(@post), :class => 'btn', :title => 'Bar'} edit
+%a{:href => edit_post_path(@post), :class => 'btn', :title => 'Bar'} delete
+%br
+%hr
+
+
+
+=markdown (@post.body)
