@@ -1,11 +1,15 @@
 
 
 
+
+
+
 %h1.title=@post.title
 %br
 
-%a{:href => edit_post_path(@post), :class => 'btn', :title => 'Bar'} edit
-%a{:href => edit_post_path(@post), :class => 'btn', :title => 'Bar'} delete
+-if current_user==@post.user
+	=link_to "delete post" ,post_path(@post), method: :delete
+	=link_to "edit post" ,edit_post_path(@post)
 %br
 %hr
 
