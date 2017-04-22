@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422071909) do
+ActiveRecord::Schema.define(version: 20170422090711) do
 
   create_table "data", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(version: 20170422071909) do
     t.datetime "updated_at",                          null: false
     t.string   "user_name"
     t.text     "bio"
+    t.string   "link1"
+    t.string   "link2"
+    t.string   "link3"
+    t.string   "link4"
+    t.string   "link5"
+    t.string   "link6"
+    t.string   "link1t"
+    t.string   "link2t"
+    t.string   "link3t"
+    t.string   "link4t"
+    t.string   "link5t"
+    t.string   "link6t"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["user_name"], name: "index_users_on_user_name", unique: true

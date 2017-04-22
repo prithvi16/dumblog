@@ -1,4 +1,43 @@
 = form_for @edit_user, :url => settings_path, :method => :post do |f|
   = f.label :bio, "Bio:", :class => "required"
+
   = f.text_area :bio, :size => "100x5", :style => "width: 600px;"
+  %br
+
+  = f.label :link1 ,"Link 1:"
+  = f.url_field :link1
+  = f.text_area :link1t , :value => "Link 1 text"
+  %br
+
+  = f.label :link2 ,"Link 2:"
+  = f.url_field :link2
+  = f.text_area :link2t , :value => "Link 2 text"
+  %br
+  
+  = f.label :link3 ,"Link 3:"
+  = f.url_field :link3
+  = f.text_area :link3t , :value => "Link 3 text"
+  %br
+  
+  = f.label :link4 ,"Link 4:"
+  = f.url_field :link4
+  = f.text_area :link4t , :value => "Link 4 text"
+  %br
+  
+  = f.label :link5 ,"Link 5:"
+  = f.url_field :link5
+  = f.text_area :link5t , :value => "Link 5 text"
+  %br
+  
+  = f.label :link6 ,"Link 6:"
+  = f.url_field :link6
+  = f.text_area :link6t , :value => "Link 6 text"
+  %br
+  
+
+
+
+
+
+
   = f.submit "Save Account Settings"
