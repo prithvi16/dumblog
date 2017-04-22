@@ -1,6 +1,9 @@
 -if @user
-  =@user.user_name
+  %h1=@user.user_name
+  -if !@user.bio.nil?
+    %h5=@user.bio
   %h3=@user.user_name+ "'s posts"
+
   -@posts.each do |post|
     %li=link_to post.title , post_path(post)
     %br

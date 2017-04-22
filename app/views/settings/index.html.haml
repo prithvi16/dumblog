@@ -1,0 +1,4 @@
+= form_for @edit_user, :url => settings_path, :method => :post do |f|
+  = f.label :bio, "Bio:", :class => "required"
+  = f.text_area :bio, :size => "100x5", :style => "width: 600px;"
+  = f.submit "Save Account Settings"
