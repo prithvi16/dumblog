@@ -4,6 +4,8 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Dumblog
     = csrf_meta_tags
+    %link{:crossorigin => "anonymous", :href => "https://unpkg.com/purecss@0.6.2/build/pure-min.css", :integrity => "sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD", :rel => "stylesheet"}/
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_include_tag :defaults
