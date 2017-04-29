@@ -9,7 +9,7 @@ maximum: 16 }
 
 has_many :posts , dependent: :destroy
 has_one :datum , dependent: :destroy
-
+has_many :comments
 
   def has_bio
 

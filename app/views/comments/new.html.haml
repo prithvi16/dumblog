@@ -1,0 +1,6 @@
+= form_for [@post, @comment] do |f|
+  = f.text_field :content
+  = hidden_field_tag "parent_id", @parent
+
+
+  = f.button 

@@ -2,16 +2,15 @@ Rails.application.routes.draw do
 
 
 
-  get 'settings/edit'
-
-  get 'settings/update'
 
   get '/settings' , to: "settings#index"
   post "/settings" => "settings#update"
 
   devise_for :users ,:controllers => { registrations:
 'registrations' }
- resources :posts
+ resources :posts do
+   resources :comments
+   end
  root to: "posts#index"
   get '/:user' , to: "person#show"
   

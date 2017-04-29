@@ -15,6 +15,7 @@ end
 
 def new
         @post=current_user.posts.build
+        @new_comment=@post.comments.build
 
 end 
 

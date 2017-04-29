@@ -1,0 +1,13 @@
+.comment
+  .created_at= comment.created_at.strftime("%B %d, %Y")
+  .content
+    = comment.content
+  .actions
+    =link_to "reply" ,new_post_comment_path(@post,:parent_id=>comment) 
+    -if current_user==comment.user
+      |
+      =link_to "edit" ,edit_post_comment_path(comment.post,comment) 
+    -if current_user==comment.user || current_user==comment.post.user  
+      |
+      =link_to "delete" ,post_comment_path(comment.post,comment), method: :delete
+
