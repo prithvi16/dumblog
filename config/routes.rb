@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
 
 
+  get 'settings/edit'
+
+  get 'settings/update'
+
   get '/settings' , to: "settings#index"
   post "/settings" => "settings#update"
 
