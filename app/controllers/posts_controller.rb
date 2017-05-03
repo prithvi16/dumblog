@@ -26,7 +26,16 @@ end
 
 def show
   @post = Post.find(params[:id])
-  @user= User.find(@post.user_id)
+ recently_viewed = cookies[:viewd_posts].to_s.split(':')
+ if not recently_viewed.include?(@post.id.to_s)
+ @post.update_column(:views,  @post.views+1 )
+ recently_viewed << @post.id.to_s
+end
+cookies[:viewd_posts] = {
+        value:    recently_viewed.join(':'),
+        expires:  10.minutes.from_now
+      }
+ @user= User.find(@post.user_id)
 end
 
 
