@@ -16,13 +16,20 @@ def create
 
       @comment = @post.comments.build(comment_params)
       @comment.user_id=current_user.id
-      print params[:parent_id]
+    
       if params[:parent_id]
-
+       
       @comment.parent=Comment.find(params[:parent_id])
+      if current_user != @comment.parent.user
+      Notification.create(:user => @comment.parent.user , :comment => @comment)
+      end
       end
       if @comment.save
         flash[:notice] = "Successfully created comment."
+          if current_user != @post.user and !params[:parent_id]
+          Notification.create(:user => @post.user , :comment => @comment)
+          end
+        
         redirect_to(post_path(@post))
       else
         flash[:error] = "Error adding comment."

@@ -8,8 +8,9 @@ class User < ApplicationRecord
 maximum: 16 }
 
 has_many :posts , dependent: :destroy
-has_one :datum , dependent: :destroy
-has_many :comments
+
+has_many :comments , dependent: :destroy
+has_many :notifications , dependent: :destroy
 
   def has_bio
 

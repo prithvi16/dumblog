@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
 
 
+  get '/threads' , to: "threads#index"
+
   get '/settings' , to: "settings#index"
   post "/settings" => "settings#update"
 

@@ -1,0 +1,11 @@
+-@notifications.each do |n|
+    =n.comment.user.user_name
+    %br
+    commnted on
+    -if n.comment.parent
+        %em=n.comment.parent.content
+    -else
+        %em=n.comment.post.title      
+    %br
+    =n.comment.content
+    %hr
