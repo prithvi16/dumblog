@@ -1,5 +1,5 @@
 
-
+require 'uri'
 class PostsController < ApplicationController
 	before_action :set_post, only: [:show, :edit, :update,
 	:destroy]
@@ -26,6 +26,7 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find(params[:id])
+		@url= URI.escape(request.original_url)
 		recently_viewed = cookies[:viewd_posts].to_s.split(':')
 		if not recently_viewed.include?(@post.id.to_s)
 			@post.update_column(:views,  @post.views+1 )
