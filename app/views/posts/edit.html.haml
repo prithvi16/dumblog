@@ -3,4 +3,5 @@
 = simple_form_for @post do |f|
     =f.input :title 
     =f.input :body
+    = f.input :tag_list, :label => "Tags* (seperated by commas)", :input_html => { :class => "css-class", :value => @post.tag_list.join(", ") }
     =f.button :submit

@@ -8,6 +8,7 @@ gem 'simple_form'
 gem 'haml'
 gem 'redcarpet'
 gem 'devise'
+gem 'acts-as-taggable-on'
 
 gem 'ancestry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
