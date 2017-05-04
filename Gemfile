@@ -9,6 +9,7 @@ gem 'haml'
 gem 'redcarpet'
 gem 'devise'
 gem 'acts-as-taggable-on'
+gem 'friendly_id'
 
 gem 'ancestry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

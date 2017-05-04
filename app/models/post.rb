@@ -3,4 +3,7 @@ class Post < ApplicationRecord
 	belongs_to :user
 	acts_as_taggable
 	has_many :comments
+
+	 extend FriendlyId
+    friendly_id :title, use: 	[:slugged , :history]
 end
