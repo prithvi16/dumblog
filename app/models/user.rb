@@ -12,7 +12,7 @@ class User < ApplicationRecord
 	has_many :comments , dependent: :destroy
 	has_many :notifications , dependent: :destroy
 	include Gravtastic
-    gravtastic
+    gravtastic :size => 128
 
 	
 end

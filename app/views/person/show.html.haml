@@ -1,16 +1,34 @@
 -if @user
-  %h1=@user.user_name
-  -if !@user.bio.nil?
-    %h5=@user.bio
-  = render partial: "layouts/links", locals: {user: @user}
-  = image_tag @user.gravatar_url
-
-  %h3=@user.user_name+ "'s posts"
-
-  -@posts.each do |post|
-    %li=link_to post.title , post_path(post)
-    %br
+  .columns
+    .column.is-one-third.is-offset-one-third.headerpro
+      %figure.image.is-128x128
+        = image_tag @user.gravatar_url , :class => 'proimage'
+      %p 
+        .title
+          =@user.user_name
+        %p twitter github email
+      .content
+        -if !@user.bio.nil?
+          =@user.bio
+  %br            
+  .columns
+    .column.card
+      %header.card-header
+        %p.card-header-title.is-one-third
+          Recent
+      .card-content
+        -@posts.each do |post|
+          .content
+            =link_to post.title , post_path(post)
+            %br
+            %small=post.created_at    
+  
+      
+    
 -else
   %p="user not found"
+
+
+      
 
   

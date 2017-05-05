@@ -5,13 +5,17 @@
 
 %h1.title=@post.title
 %br
-=@post.views 
+
 #{raw @post.tag_list.map { |t| link_to t, tag_path(@post.user.user_name,t) }.join(', ')}
 
 %br
--if current_user==@post.user
-  =link_to "delete post" ,post_path(@post), method: :delete
-  =link_to "edit post" ,edit_post_path(@post)
+.is-pulled-left
+  -if current_user==@post.user
+    =link_to "delete post" ,post_path(@post), method: :delete ,:class =>  "button is-info"
+    =link_to "edit post" ,edit_post_path(@post) ,:class =>  "button is-info"
+.is-pulled-right
+  =@post.views.to_s + " views"
+
 %br
 %hr
 
@@ -21,6 +25,9 @@
 =   render partial: "layouts/sharing" , locals:{title: @post.title}
 
 = form_for [@post, @post.comments.new] do |f|
-  = f.text_field :content
-  = f.button 
+  .field
+    %p.content
+      = f.text_area :content ,:class => "textarea" 
+    %p.content
+      = f.button :comment , :class => "button is-info"
 = nested_comments @post.comments.arrange(:order => :created_at)
