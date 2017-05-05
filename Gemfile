@@ -10,6 +10,7 @@ gem 'redcarpet'
 gem 'devise'
 gem 'acts-as-taggable-on'
 gem 'friendly_id'
+gem 'gravtastic'
 
 gem 'ancestry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

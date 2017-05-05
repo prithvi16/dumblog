@@ -3,6 +3,7 @@
   -if !@user.bio.nil?
     %h5=@user.bio
   = render partial: "layouts/links", locals: {user: @user}
+  = image_tag @user.gravatar_url
 
   %h3=@user.user_name+ "'s posts"
 

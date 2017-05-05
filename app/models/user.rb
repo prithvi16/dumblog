@@ -11,8 +11,8 @@ class User < ApplicationRecord
 
 	has_many :comments , dependent: :destroy
 	has_many :notifications , dependent: :destroy
+	include Gravtastic
+    gravtastic
 
-	def has_bio
-
-	end
+	
 end

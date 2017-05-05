@@ -1,17 +1,20 @@
 module PostsHelper
 	def markdown(text)
 		options = {
-			filter_html:     true,
+			filter_html:     false,
 			hard_wrap:       true,
+			prettify:        true,
 			link_attributes: { rel: 'nofollow', target: "_blank" },
 			space_after_headers: true,
 			fenced_code_blocks: true
 		}
 
 		extensions = {
+			tables: true,
 			autolink:           true,
 			superscript:        true,
-			disable_indented_code_blocks: true
+			disable_indented_code_blocks: false,
+			
 		}
 
 		renderer = Redcarpet::Render::HTML.new(options)
