@@ -1,6 +1,8 @@
-= form_for [@post, @comment] do |f|
-  = f.text_field :content
-  = hidden_field_tag "parent_id", @parent
 
-
-  = f.button 
+.container
+  = form_for [@post, @comment] do |f|
+    = f.text_area :content , :class=> 'form-control' ,:col =>18
+    = hidden_field_tag "parent_id", @parent
+    %br
+    .form-group
+      = f.button "comment" , :class=>'btn btn-primary'

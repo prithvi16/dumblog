@@ -4,6 +4,7 @@
 = render partial: "layouts/links", locals: {user: @post.user}
 
 %h1.title=@post.title
+%h3.h3=@post.user.user_name
 %br
 
 #{raw @post.tag_list.map { |t| link_to t, tag_path(@post.user.user_name,t) }.join(', ')}

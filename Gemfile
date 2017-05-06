@@ -11,7 +11,7 @@ gem 'devise'
 gem 'acts-as-taggable-on'
 gem 'friendly_id'
 gem 'gravtastic'
-
+gem 'bootstrap-sass'
 gem 'ancestry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'

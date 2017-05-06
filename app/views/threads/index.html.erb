@@ -1,0 +1,26 @@
+
+<div class="container">
+
+
+<% @notifications.each do |n| %>
+  <%= link_to n.comment.user.user_name , "/"+n.comment.user.user_name %>
+  commnted on
+  <% if n.comment.parent %>
+    <em>
+     <%=truncate(n.comment.parent.content, length: 20)  %>
+    </em>
+  <% else %>
+    <em>
+      <%= n.comment.post.title %>
+
+    </em>
+  <% end %>
+  <br/>
+  <%= n.comment.content %>
+
+  <hr/>
+<% end %>
+</div>
+
+
+

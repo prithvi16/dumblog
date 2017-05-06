@@ -1,7 +1,9 @@
 .comment
   .created_at= comment.created_at.strftime("%B %d, %Y")
-  .content
-    = comment.content
+  .content 
+    
+    %p{:id => "#{comment.id}"}= comment.content
+    
   .actions
     =link_to "reply" ,new_post_comment_path(@post,:parent_id=>comment) 
     -if current_user==comment.user

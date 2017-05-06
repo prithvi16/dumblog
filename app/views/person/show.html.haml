@@ -4,10 +4,14 @@
       %figure.image.is-128x128
         = image_tag @user.gravatar_url , :class => 'proimage'
       %p 
-        .title
+        .h1
           =@user.user_name
-        %p twitter github email
-      .content
+        %p.cicons
+          %i.fa.fa-twitter.fa-2x{"aria-hidden" => "true"}
+          %i.fa.fa-github.fa-2x{"aria-hidden" => "true"}
+          %i.fa.fa-envelope.fa-2x{"aria-hidden" => "true"}
+
+      .h4
         -if !@user.bio.nil?
           =@user.bio
   %br            
