@@ -7,11 +7,11 @@
   commnted on
   <% if n.comment.parent %>
     <em>
-     <%=truncate(n.comment.parent.content, length: 20)  %>
+     <%=link_to n.comment.parent.content , post_path(n.comment.root.post) %>
     </em>
   <% else %>
     <em>
-      <%= n.comment.post.title %>
+      <%=link_to n.comment.post.title ,post_path(n.comment.post)  %>
 
     </em>
   <% end %>

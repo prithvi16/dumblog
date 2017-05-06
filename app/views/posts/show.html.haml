@@ -1,34 +1,34 @@
 
 
-%br
-= render partial: "layouts/links", locals: {user: @post.user}
-
-%h1.title=@post.title
-%h3.h3=@post.user.user_name
-%br
-
-#{raw @post.tag_list.map { |t| link_to t, tag_path(@post.user.user_name,t) }.join(', ')}
-
-%br
-.is-pulled-left
-  -if current_user==@post.user
-    =link_to "delete post" ,post_path(@post), method: :delete ,:class =>  "button is-info"
-    =link_to "edit post" ,edit_post_path(@post) ,:class =>  "button is-info"
-.is-pulled-right
-  =@post.views.to_s + " views"
-
-%br
-%hr
 
 
+.container
+  .row
+    .col-md-8.col-xs-10.col-md-offset-2
+      %h1.h1=@post.title
+      by
+      =link_to @post.user.user_name , "/"+@post.user.user_name
+      %br
 
-=markdown (@post.body)
-=   render partial: "layouts/sharing" , locals:{title: @post.title}
+      #{raw @post.tag_list.map { |t| link_to t, tag_path(@post.user.user_name,t) }.join(', ')}
+      %br
 
-= form_for [@post, @post.comments.new] do |f|
-  .field
-    %p.content
-      = f.text_area :content ,:class => "textarea" 
-    %p.content
-      = f.button :comment , :class => "button is-info"
-= nested_comments @post.comments.arrange(:order => :created_at)
+      -if current_user==@post.user
+        =link_to "delete post" ,post_path(@post), method: :delete ,:class =>  "button is-info"
+        =link_to "edit post" ,edit_post_path(@post) ,:class =>  "button is-info"
+        =@post.views.to_s + " views"
+
+      %br
+      %hr
+      =markdown (@post.body)
+      =render partial: "layouts/sharing" , locals:{title: @post.title}
+
+      = form_for [@post, @post.comments.new] do |f|
+        .field
+          %p.content
+            = f.text_area :content ,:class => "form-control" 
+          %p.content
+            = f.button :comment , :class => "btn primary"
+      .panel.panel-default
+        .panel-body
+          = nested_comments @post.comments.arrange(:order => :created_at)
