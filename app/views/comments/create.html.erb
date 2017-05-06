@@ -1,2 +1,10 @@
-<h1>Comments#create</h1>
-<p>Find me in app/views/comments/create.html.erb</p>
+<%= form_for [@post, @post.comments.new] do |f| %>
+  <div class="field">
+    <p class="content">
+      <%= f.text_area :content ,:class => "form-control"  %>
+    </p>
+    <p class="content">
+      <%= f.button :comment , :class => "btn primary" %>
+    </p>
+  </div>
+<% end %>

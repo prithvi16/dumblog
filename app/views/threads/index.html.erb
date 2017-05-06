@@ -7,11 +7,11 @@
   commnted on
   <% if n.comment.parent %>
     <em>
-     <%=link_to n.comment.parent.content , post_path(n.comment.root.post) %>
+     <%=link_to truncate(n.comment.parent.content ,length:40), post_path(n.comment.root.post,:anchor=> "#{n.comment.parent.id}") %>
     </em>
   <% else %>
     <em>
-      <%=link_to n.comment.post.title ,post_path(n.comment.post)  %>
+      <%=link_to truncate(n.comment.post.title ,length:40) ,post_path(n.comment.post , :anchor=> "#{n.comment.id}")  %>
 
     </em>
   <% end %>

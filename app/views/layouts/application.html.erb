@@ -48,15 +48,20 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-    <div class="container-fluid">
-      <p class="notice">
+    <div class="container">
+    <% if notice %>
+      <p class="alert alert-success">
         <%= notice %>
       </p>
-      <p class="alert">
+      <% end %>
+      <% if alert %>
+      <p class="alert alert-danger">
         <%= alert %>
       </p>
-      
+
+      </div>
+      <% end %>
       <%= yield %>
-    </div>
+    
   </body>
 </html>

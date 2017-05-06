@@ -1,8 +1,21 @@
 
 .container
-  = form_for [@post, @comment] do |f|
-    = f.text_area :content , :class=> 'form-control' ,:col =>18
-    = hidden_field_tag "parent_id", @parent
-    %br
-    .form-group
-      = f.button "comment" , :class=>'btn btn-primary'
+  .row
+    .col-md-8
+      - if @comment.errors.any?
+        .panel.panel-default
+          .panel-body
+          
+            .bg-danger
+              %h3 Uh-oh!
+              %ul
+                - @comment.errors.full_messages.each do |msg|
+                  %li= msg
+
+      = form_for [@post, @comment] do |f|
+        = f.text_area :content , :class=> 'form-control' ,:col =>18
+        -if @parent
+          = hidden_field_tag "parent_id", @parent
+        %br
+          .form-group
+            = f.button "comment" , :class=>'btn btn-primary'

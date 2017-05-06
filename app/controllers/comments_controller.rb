@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
 
 	def new
-				@comment = Comment.new()
+		@comment = Comment.new()
 		@parent=params[:parent_id]
 	end
 
@@ -28,7 +28,14 @@ class CommentsController < ApplicationController
 			end
 						redirect_to(post_path(@post))
 		else
-			flash[:error] = "Error adding comment."
+			flash[:error] = @comment.errors.full_messages
+			if params[:parent_id]
+			  @parent=params[:parent_id]
+			  render :action =>  :new ,:object =>  @parent	
+			else 
+				render :new
+			end
+			
 		end
 	end
 
@@ -47,7 +54,15 @@ class CommentsController < ApplicationController
 
 		if current_user==@comment.user
 						@comment.update(comment_params)
+						if @comment.save
+
+
 			redirect_to(post_path(@comment.post)) 
+			flash[:notice] = "comment succesfully updated"
+		else
+			flash[:error] = @comment.errors.full_messages
+			render :edit
+			end
 		else
 			flash[:alert] = "That comment doesn't belong to you!"
 			redirect_to post_path(@post)

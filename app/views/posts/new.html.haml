@@ -1,5 +1,16 @@
-= simple_form_for @post , :html => {:class => 'field'}  do |f|
-        
+.container
+  .row
+    .col-md-8
+      - if @post.errors.any?
+        .panel.panel-default
+          .panel-body
+          
+            .bg-danger
+              %h3 Uh-oh!
+              %ul
+                - @post.errors.full_messages.each do |msg|
+                  %li= msg
+      = simple_form_for @post , :html => {:class => 'field'}  do |f|
         =f.input :title  , :class => 'form-control'
         =f.input :body 
         =f.input :tag_list

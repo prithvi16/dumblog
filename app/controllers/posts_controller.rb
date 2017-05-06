@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
 	end
 
-
+	
 	def new
 		@post=current_user.posts.build
 		@new_comment=@post.comments.build
@@ -20,8 +20,16 @@ class PostsController < ApplicationController
 	end 
 
 	def create
-		@post=current_user.posts.create(post_params)    
+		@post=current_user.posts.create(post_params) 
+		if   @post.save
+		flash[:notice] = "Post succesfulyy created"
 		redirect_to(post_path(@post))
+	else
+		@post.errors.full_messages
+        flash[:error] = @post.errors.full_messages
+		render :new
+		
+		end
 	end
 
 	def show
@@ -49,8 +57,15 @@ class PostsController < ApplicationController
 	def update
 		@post.slug=nil
 		@post.update_attributes(post_params)
+		if @post.save
 		redirect_to(post_path(@post))    
-	end
+        else
+		@post.errors.full_messages
+        flash[:error] = @post.errors.full_messages
+		render :edit
+			
+		end	
+end
 
 	def destroy
 		  

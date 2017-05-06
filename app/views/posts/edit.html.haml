@@ -1,7 +1,17 @@
-
-
-= simple_form_for @post do |f|
-    =f.input :title 
-    =f.input :body
-    = f.input :tag_list, :label => "Tags* (seperated by commas)", :input_html => { :class => "css-class", :value => @post.tag_list.join(", ") }
-    =f.button :submit
+.container
+  .row
+    .col-md-8
+      - if @post.errors.any?
+        .panel.panel-default
+          .panel-body
+          
+            .bg-danger
+              %h3 Uh-oh!
+              %ul
+                - @post.errors.full_messages.each do |msg|
+                  %li= msg
+      = simple_form_for @post , :html => {:class => 'field'}  do |f|
+        =f.input :title  , :class => 'form-control'
+        =f.input :body 
+        =f.input :tag_list , :label => "Tags* (seperated by commas)", :input_html => { :class => "css-class", :value => @post.tag_list.join(", ") }
+        =f.button :submit

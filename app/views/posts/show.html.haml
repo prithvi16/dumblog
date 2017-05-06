@@ -4,19 +4,25 @@
 
 .container
   .row
-    .col-md-8.col-xs-10.col-md-offset-2
-      %h1.h1=@post.title
-      by
-      =link_to @post.user.user_name , "/"+@post.user.user_name
+    .col-md-12
+      %h1.h1.title=@post.title
+      
+      .text-center  
+        %h4=link_to @post.user.user_name , "/"+@post.user.user_name
+        on 
+        =@post.created_at
+        %p
+          tags:
+          #{raw @post.tag_list.map { |t| link_to t, tag_path(@post.user.user_name,t) }.join(', ')}
       %br
 
-      #{raw @post.tag_list.map { |t| link_to t, tag_path(@post.user.user_name,t) }.join(', ')}
-      %br
+      
+      
 
       -if current_user==@post.user
-        =link_to "delete post" ,post_path(@post), method: :delete ,:class =>  "button is-info"
-        =link_to "edit post" ,edit_post_path(@post) ,:class =>  "button is-info"
-        =@post.views.to_s + " views"
+        .btn.btn-success=link_to "delete post" ,post_path(@post), method: :delete ,:class =>  "button is-info"
+        .btn.btn-success=link_to "edit post" ,edit_post_path(@post) ,:class =>  "button is-info"
+        .pull-right=@post.views.to_s + " views"
 
       %br
       %hr

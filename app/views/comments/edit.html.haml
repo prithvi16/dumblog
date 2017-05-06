@@ -1,3 +1,22 @@
-= form_for [@comment.post, @comment] do |f|
-  = f.text_field :content
-  = f.button 
+
+.container
+  .row
+    .col-md-8
+      - if @comment.errors.any?
+        .panel.panel-default
+          .panel-body
+          
+            .bg-danger
+              %h3 Uh-oh!
+              %ul
+                - @comment.errors.full_messages.each do |msg|
+                  %li= msg
+
+      = form_for [@comment.post, @comment] do |f|
+        = f.text_area :content , :class=> 'form-control' ,:col =>18
+        
+        %br
+          .form-group
+            = f.button "comment" , :class=>'btn btn-primary'
+
+
