@@ -7,9 +7,13 @@
         .h1
           =@user.user_name
         %p.cicons
-          %i.fa.fa-twitter.fa-2x{"aria-hidden" => "true"}
-          %i.fa.fa-github.fa-2x{"aria-hidden" => "true"}
-          %i.fa.fa-envelope.fa-2x{"aria-hidden" => "true"}
+          %i.icon.fa.fa-twitter.fa-2x{"aria-hidden" => "true"}
+          %i.icon.fa.fa-github.fa-2x{"aria-hidden" => "true"}
+          %a{:href => "#{"mailto:"+@user.email}", :title => "email"}
+            %i.icon.fa.fa-envelope.fa-2x{"aria-hidden" => "true"}
+          %a{:href => "#{feed_url(:format => :rss)}", :title => "RSS feed"}
+            %i.icon.fa.fa-rss.fa-2x{"aria-hidden" => "true"}
+          = auto_discovery_link_tag :rss, feed_url(:format => :rss)
 
       .h4
         -if !@user.bio.nil?

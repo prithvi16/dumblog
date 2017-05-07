@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 		resources :comments
 	end
 	root to: "posts#index"
-	get '/:user' , to: "person#show"
+	get '/:user' , to: "person#show"  , as: :person
+	get '/:user/rss' ,to: "person#rss" ,as: :feed
 	get '/:user/:tag', to:"person#tag" ,as: :tag
 		# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
