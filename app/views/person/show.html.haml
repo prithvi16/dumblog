@@ -23,17 +23,29 @@
         -if !@user.bio.nil?
           =@user.bio
   %br            
-  .columns
-    .column.card
+  .row
+    .col-md-6.col-sm-10
       %header.card-header
-        %p.card-header-title.is-one-third
+        %p.h3
           Recent
       .card-content
-        -@posts.each do |post|
+        -@recent_posts.each do |post|
           .content
             =link_to post.title , post_path(post)
             %br
             %small=post.created_at    
+        =paginate(@recent_posts)   
+    .col-md-6.col-sm-10
+      %header.card-header
+        %p.h3
+          top
+      .card-content
+        -@top_posts.each do |post|
+          .content
+            =link_to post.title , post_path(post)
+            %br
+            %small=post.created_at    
+        =paginate(@top_posts) 
   
       
     

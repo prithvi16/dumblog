@@ -1,4 +1,10 @@
--@posts.each do |post|
+- if !@posts.blank?
+  -@posts.each do |post|
     =post.title
     =link_to "link" , post_path(post)
+
     %br
+  =paginate(@posts)   
+-else 
+  %p
+    tag not found

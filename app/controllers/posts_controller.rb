@@ -2,6 +2,7 @@
 class PostsController < ApplicationController
 	before_action :set_post, only: [:show, :edit, :update,:edit,
 	:destroy]
+	
 	before_action :authenticate_user!  , except: [:index,:show]
 	before_action :owned_post, only: [:edit, :update, :destroy]
 
@@ -88,7 +89,8 @@ end
 	end 
 	def set_post
 		@post = Post.friendly.find(params[:id])
+	
 	end
-
+    
 
 end

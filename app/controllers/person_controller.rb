@@ -1,23 +1,29 @@
 class PersonController < ApplicationController
+	before_action :set_user
 
 	def show
-		@user=User.find_by user_name: params[:user]
+		
 		if @user
-		@posts=@user.posts
+		@recent_posts=Kaminari.paginate_array(@user.posts.order(created_at: :desc)).page(params[:page]).per(10)
+		@top_posts=Kaminari.paginate_array(@user.posts.order(views: :desc)).page(params[:page]).per(10)
         end
 	end
 
 	def tag
-		@user=User.find_by user_name: params[:user]
+		
 		tag=params[:tag]
-		@posts=@user.posts.tagged_with(tag)
-	   	
+		
+		@posts=Kaminari.paginate_array(@user.posts.tagged_with(tag)).page(params[:page]).per(10)
+		if @post.blank?
+	     render status: 404	
+	end	
+		
 	end
-
-
+     
+	  
 
 	def rss
-      @user=User.find_by user_name: params[:user]
+      
 	  if @user
       @posts=@user.posts.last(10)
 	  respond_to do |format|
@@ -27,4 +33,20 @@ class PersonController < ApplicationController
       end
 
     end
+
+
+	private
+
+	def set_user
+		@user=User.find_by user_name: params[:user]
+		if !@user
+           
+       render status: 404 
+       
+
+		end
+
+
+	end	
+
 end
