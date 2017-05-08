@@ -37,4 +37,7 @@
             = f.button :comment , :class => "btn primary"
       .panel.panel-default
         .panel-body
-          = nested_comments @post.comments.arrange(:order => :created_at)
+          -if @post.comments
+            = nested_comments @post.comments.arrange(:order => :created_at)
+          - else
+            no comments yet  
