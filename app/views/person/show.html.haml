@@ -7,8 +7,12 @@
         .h1
           =@user.user_name
         %p.cicons
-          %i.icon.fa.fa-twitter.fa-2x{"aria-hidden" => "true"}
-          %i.icon.fa.fa-github.fa-2x{"aria-hidden" => "true"}
+          -if @user.twitter
+            %a{:href => "#{@user.twitter}", :title => "twitter profile"}
+              %i.icon.fa.fa-twitter.fa-2x{"aria-hidden" => "true"}
+          -if @user.github
+            %a{:href => "#{@user.github}", :title => "github profile"}  
+              %i.icon.fa.fa-github.fa-2x{"aria-hidden" => "true"}
           %a{:href => "#{"mailto:"+@user.email}", :title => "email"}
             %i.icon.fa.fa-envelope.fa-2x{"aria-hidden" => "true"}
           %a{:href => "#{feed_url(:format => :rss)}", :title => "RSS feed"}
