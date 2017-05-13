@@ -12,6 +12,11 @@
                   %li= msg
       = simple_form_for @post , :html => {:class => 'field'}  do |f|
         =f.input :title  , :class => 'form-control'
-        =f.input :body 
+        =f.input :body , :input_html => { :rows => 20 , :id => "some-textarea" , }
         =f.input :tag_list
         =f.button :submit
+:javascript
+  $(document).on('turbolinks:load', function() {
+    
+  $("#some-textarea").markdown({autofocus:false,savable:false})
+  });        
