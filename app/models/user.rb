@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
 	validates :user_name, presence: true, length: { minimum: 4,
 	maximum: 16 } , uniqueness: true
-
+	validates :blog_name, length: {minimum: 4 , maximum: 20}
 	has_many :posts , dependent: :destroy
 
 	has_many :comments , dependent: :destroy
