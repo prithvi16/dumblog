@@ -38,7 +38,9 @@
         
         
          <li><%= link_to "settings", settings_path, :method=> :get %> </li>
-         <li><%= link_to "threads", threads_path , :method=> :get %> </li>
+         
+          <li role="presentation"><a href="/threads">Threads <span class="badge"><%= current_user.notifications.where(read: false).count%></span></a></li>
+        
          <li><%= link_to "Sign out",destroy_user_session_path ,:method=> :delete %></li>
       <% else %>
          <li><%= link_to "log-in" , new_user_session_path   %> </li>
