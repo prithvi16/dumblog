@@ -26,7 +26,8 @@
 
       %br
       %hr
-      =markdown (@post.body)
+      .markdown-body
+        =markdown2 (@post.body)
       =render partial: "layouts/sharing" , locals:{title: @post.title}
 
       = form_for [@post, @post.comments.new] do |f|
