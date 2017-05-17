@@ -9,7 +9,7 @@
     <script src="https://use.fontawesome.com/8dbb6cb7d1.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag  'application' %>
+
   </head>
   <body>
     <%= debug(params) if Rails.env.development? %>
@@ -28,23 +28,23 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      
-      
+
+
       <ul class="nav navbar-nav navbar-right">
-        
+
         <% if user_signed_in? %>
         <li><%= link_to "New post",new_post_path  %></li>
-        
-        
-        
+
+
+
          <li><%= link_to "settings", settings_path, :method=> :get %> </li>
-         
+
           <li role="presentation"><a href="/threads">Threads <span class="badge"><%= current_user.notifications.where(read: false).count%></span></a></li>
-        
+
          <li><%= link_to "Sign out",destroy_user_session_path ,:method=> :delete %></li>
       <% else %>
          <li><%= link_to "log-in" , new_user_session_path   %> </li>
-        
+
          <li><%= link_to "sign-Up" , new_user_registration_path %> </li>
       <% end %>
       </ul>
@@ -65,7 +65,7 @@
       </div>
       <% end %>
       <%= yield %>
-    
+
   </body>
   <script>$(document).on('turbolinks:load', function() {
    console.log('(document).turbolinks:load')
