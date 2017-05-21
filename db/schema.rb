@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513182439) do
+ActiveRecord::Schema.define(version: 20170521194805) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -115,8 +115,10 @@ ActiveRecord::Schema.define(version: 20170513182439) do
     t.string   "github"
     t.string   "twitter"
     t.string   "blog_name",              default: "blogname"
+    t.string   "subdomain"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["subdomain"], name: "index_users_on_subdomain", unique: true
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 

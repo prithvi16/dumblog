@@ -5,7 +5,10 @@ class User < ApplicationRecord
 	:recoverable, :rememberable, :trackable, :validatable
 
 	validates :user_name, presence: true, length: { minimum: 4,
-	maximum: 16 } , uniqueness: true
+	maximum: 16 } , uniqueness: { case_sensitive: false }
+
+	validates :subdomain, presence: true, length: { minimum: 4,
+maximum: 16 } , uniqueness: { case_sensitive: false }
 	validates :blog_name, length: {minimum: 4 , maximum: 20}
 	has_many :posts , dependent: :destroy
 
@@ -14,5 +17,5 @@ class User < ApplicationRecord
 	include Gravtastic
     gravtastic :size => 128
 
-	
+
 end
