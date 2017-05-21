@@ -122,13 +122,19 @@ hr {
     }
 }
 
-.postcontent {
-    font-size: 14px;
-    margin: 0 auto;
-    max-width: 50em;
-    text-align: justify;
-    line-height: 1.5;
-    box-sizing: border-box;
+.webfoot {
+    padding: 5px;
+    border-top: #0275d8 solid 2px;
+    display: flex;
+    font-size: 12px;
+    min-width: 70em;
+    margin: 200px 0px 10px 0px;
+    justify-content: center;
+    color: #0275d8;
+    flex-wrap: wrap;
+    background-color: #fafafa;
+    align-content: space-between;
+    font-family: Courier New, Courier, monospace;
 }
 
 .bluebutton {
