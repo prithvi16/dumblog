@@ -73,7 +73,7 @@ body {
 }
 
 hr {
-    max-width: 40em;
+    max-width: 70em;
 }
 
 .date {
@@ -117,6 +117,9 @@ hr {
     border-radius: 2px;
     font-weight: bold;
     background-color: #0275d8;
+    a {
+        color: white;
+    }
 }
 
 .postcontent {
@@ -128,13 +131,52 @@ hr {
     box-sizing: border-box;
 }
 
-.markdown-body {
+.bluebutton {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 4px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: orangered;
+    color: white;
+}
+
+.commentform {
     max-width: 50em;
+    margin: 5px auto 5px 50px;
+}
+
+.commentbox {
+    margin: 20px auto 20px 0px;
+}
+
+.comsection {
+    max-width: 70em;
+    margin: 0 auto;
+}
+
+.markdown-body {
+    border-top: orangered solid 2px;
+    max-width: 70em;
     margin: 0 auto;
     line-height: 1.5;
     font-size: 15px;
     line-height: 1.5;
     text-align: justify;
+    background-color: #f6f6ef;
 }
 
 .markdown-body .pl-c {

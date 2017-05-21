@@ -1,10 +1,10 @@
 .container
   .row
-    .col-md-8
+    .col-md-10
       - if @post.errors.any?
         .panel.panel-default
           .panel-body
-          
+
             .bg-danger
               %h3 Uh-oh!
               %ul
@@ -14,9 +14,9 @@
         =f.input :title  , :class => 'form-control'
         =f.input :body , :input_html => { :rows => 20 , :id => "some-textarea" , }
         =f.input :tag_list , :label => "Tags* (seperated by commas)", :input_html => { :class => "css-class", :value => @post.tag_list.join(", ") }
-        =f.button :submit
+        =f.button :submit ,:class => "bluebutton"
 :javascript
   $(document).on('turbolinks:load', function() {
-    
+
   $("#some-textarea").markdown({autofocus:false,savable:false})
-  });                
+  });
