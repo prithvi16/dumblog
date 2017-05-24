@@ -10,28 +10,38 @@
         =f.input :github
         =f.input :twitter
         =f.input :blog_name
+
         =f.label :link1,'link 1:'
         =f.input :link1 , as: :url, label: false
         =f.label :link1t , 'link 1 text:'
-        =f.input :link1 , as: :string, label: false
+        =f.input :link1t , as: :string, label: false
+
+
         =f.label :link2,'link 2:'
         =f.input :link2 , as: :url, label: false
         =f.label :link2t , 'link 2 text:'
-        =f.input :link2 , as: :string, label: false
+        =f.input :link2t , as: :string, label: false
+
+
         =f.label :link3,'link 3:'
         =f.input :link3 , as: :url, label: false
         =f.label :link3t , 'link 3 text:'
-        =f.input :link3 , as: :string, label: false
+        =f.input :link3t , as: :string, label: false
+
+
         =f.label :link1,'link 4:'
         =f.input :link4 , as: :url, label: false
         =f.label :link4t , 'link 4 text:'
-        =f.input :link4 , as: :string, label: false
+        =f.input :link4t , as: :string, label: false
+
         =f.label :link5,'link 5:'
         =f.input :link5, as: :url, label: false
         =f.label :link5t , 'link 5 text:'
-        =f.input :link5 , as: :string, label: false
+        =f.input :link5t , as: :string, label: false
+
         =f.label :link6,'link 6:'
         =f.input :link6 , as: :url, label: false
         =f.label :link6t , 'link 6 text:'
-        =f.input :link6 , as: :string, label: false
+        =f.input :link6t, as: :string, label: false
+
         =f.button  :submit , 'save changes'  ,:class => "bluebutton"

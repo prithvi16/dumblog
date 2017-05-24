@@ -70,6 +70,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     friendly_id (5.2.1)
       activerecord (>= 4.0.0)
     globalid (0.4.0)
@@ -208,6 +210,7 @@ DEPENDENCIES
   coderay
   coffee-rails (~> 4.2)
   devise
+  font-awesome-rails
   friendly_id
   gravtastic
   haml

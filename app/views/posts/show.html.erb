@@ -1,3 +1,8 @@
+<div class="links">
+<%= render :partial => 'layouts/links', :locals => {:user => @post.user} %>
+
+</div>
+
 <div class="date">
         <%= time_tag @post.created_at %>
     </div>
@@ -5,6 +10,7 @@
     <div class="posttitle">
         <%= @post.title%>
     </div>
+     <%= image_tag @user.gravatar_url , :class => 'proimage' %>
     <div class="author">
         <%=link_to @post.user.user_name ,root_url(@post,:subdomain => @post.user.user_name)%>
     </div>

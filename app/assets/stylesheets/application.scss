@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require bootstrap-markdown
+ *= require font-awesome
  */
 
 @import "bootstrap-sprockets";
@@ -26,6 +27,11 @@ body {
     font-family: 'Montserrat Alternates', sans-serif;
     max-width: 80%;
     margin: 0 auto;
+}
+
+.proimage {
+    border-radius: 90px;
+    margin: auto;
 }
 
 .brandname {
@@ -64,7 +70,7 @@ body {
 .links {
     display: flex;
     font-size: 14px;
-    margin: 10 auto;
+    margin: 10px auto 40px auto;
     max-width: 40em;
     justify-content: space-between;
     color: #0275d8;

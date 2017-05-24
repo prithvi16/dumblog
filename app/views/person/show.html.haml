@@ -25,6 +25,9 @@
       .h4
         -if !@user.bio.nil?
           =@user.bio
+  .links
+    = render :partial => 'layouts/links', :locals => {:user => @user}
+
   %br
   .row
     .col-md-6.col-sm-10
