@@ -1,11 +1,12 @@
 class CommentsController < ApplicationController
-	before_action :set_post 
-	before_action :authenticate_user! 
+	before_action :set_post
+	before_action :authenticate_user!
 
 
 	def new
 		@comment = Comment.new()
 		@parent=params[:parent_id]
+		@parent_comment=Comment.find(params[:parent_id	])
 	end
 
 
@@ -31,22 +32,23 @@ class CommentsController < ApplicationController
 			flash[:error] = @comment.errors.full_messages
 			if params[:parent_id]
 			  @parent=params[:parent_id]
-			  render :action =>  :new ,:object =>  @parent	
-			else 
+			  render :action =>  :new ,:object =>  @parent
+			else
 				render :new
 			end
-			
+
 		end
 	end
 
 	def edit
 		@comment = Comment.find(params[:id])
+
 		if current_user==@comment.user
 			return
 		else
 			flash[:alert] = "That comment doesn't belong to you!"
 			redirect_to post_path(@post)
-		end   
+		end
 			end
 
 	def update
@@ -57,7 +59,7 @@ class CommentsController < ApplicationController
 						if @comment.save
 
 
-			redirect_to(post_path(@comment.post)) 
+			redirect_to(post_path(@comment.post))
 			flash[:notice] = "comment succesfully updated"
 		else
 			flash[:error] = @comment.errors.full_messages
@@ -66,22 +68,22 @@ class CommentsController < ApplicationController
 		else
 			flash[:alert] = "That comment doesn't belong to you!"
 			redirect_to post_path(@post)
-		end   
+		end
 
 
 	end
 
 	def destroy
-		@comment=Comment.find(params[:id]) 
+		@comment=Comment.find(params[:id])
 
 
 		if current_user==@comment.user || @comment.post.user == current_user
 						@comment.destroy
-						redirect_to(post_path(@comment.post)) 
+						redirect_to(post_path(@comment.post))
 		else
 			flash[:alert] = "That comment doesn't belong to you!"
 			redirect_to post_path(@post)
-		end  
+		end
 
 
 

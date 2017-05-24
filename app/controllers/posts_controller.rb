@@ -1,39 +1,40 @@
 
 class PostsController < ApplicationController
-	before_action :set_post, only: [:show, :edit, :update,:edit,
-	:destroy]
-	
+	before_action :set_post, only: [:show]
+
+	before_action :set_new_post , only: [:update ,:destroy ,:edit]
+
 	before_action :authenticate_user!  , except: [:index,:show]
 	before_action :owned_post, only: [:edit, :update, :destroy]
-
+skip_before_filter :verify_authenticity_token, :only => :destroy
 
 	def index
-		@posts=Post.all    
+		@posts=Post.all
 
 	end
 
-	
+
 	def new
 		@post=current_user.posts.build
 		@new_comment=@post.comments.build
 
-	end 
+	end
 
 	def create
-		@post=current_user.posts.create(post_params) 
+		@post=current_user.posts.create(post_params)
 		if   @post.save
 		flash[:notice] = "Post succesfulyy created"
-		redirect_to(post_path(@post))
+		redirect_to(post_url(@post,:subdomain => @post.user.subdomain))
 	else
 		@post.errors.full_messages
         flash[:error] = @post.errors.full_messages
 		render :new
-		
+
 		end
 	end
 
 	def show
-		
+
 		 if request.path != post_path(@post)
       return redirect_to @post, :status => :moved_permanently
     end
@@ -51,31 +52,31 @@ class PostsController < ApplicationController
 
 
 	def edit
-		
+
 	end
 
 	def update
 		@post.slug=nil
 		@post.update_attributes(post_params)
 		if @post.save
-		redirect_to(post_path(@post))    
+		redirect_to(post_url(@post,:subdomain => @post.user.subdomain))
         else
 		@post.errors.full_messages
         flash[:error] = @post.errors.full_messages
 		render :edit
-			
-		end	
+
+		end
 end
 
 	def destroy
-		  
+    sub = @post.user.subdomain
 		@post.destroy
-		redirect_to posts_path
+		redirect_to root_url(:subdomain=> sub)
 	end
 
 
 
-	private 
+	private
 	def post_params
 				params.require(:post).permit(:title , :body , :tag_list)
 	end
@@ -84,13 +85,26 @@ end
 		unless current_user==@post.user
 			flash[:alert] = "That post doesn't belong to you!"
 			redirect_to root_path
-		end  
+		end
 
-	end 
-	def set_post
-		@post = Post.friendly.find(params[:id])
-	
 	end
-    
+	def set_post
+
+   @show_user  =User.where(subdomain: request.subdomain).first
+
+  if @show_user.blank?
+    flash[:error] = "Blog invalid"
+    redirect_to root_url(:subdomain=>false)
+		end
+
+@post = @show_user.posts.friendly.find(params[:id])
+  end
+
+
+
+def set_new_post
+	@post=Post.friendly.find(params[:id])
+end
+
 
 end

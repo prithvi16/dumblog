@@ -6,18 +6,18 @@
   .row
     .col-md-10.col-md-offset-1
       %h1.h1.title=@post.title
-      
-      .text-center  
+
+      .text-center
         %h4=link_to @post.user.user_name , "/"+@post.user.user_name
-        on 
+        on
         =@post.created_at
         %p
           tags:
           #{raw @post.tag_list.map { |t| link_to t, tag_path(@post.user.user_name,t) }.join(', ')}
       %br
 
-      
-      
+
+
 
       -if current_user==@post.user
         .btn.btn-success=link_to "delete post" ,post_path(@post), method: :delete ,:class =>  "button is-info"
@@ -33,7 +33,7 @@
       = form_for [@post, @post.comments.new] do |f|
         .field
           %p.content
-            = f.text_area :content ,:class => "form-control" 
+            = f.text_area :content ,:class => "form-control"
           %p.content
             = f.button :comment , :class => "btn primary"
       .panel.panel-default
@@ -41,4 +41,4 @@
           -if @post.comments
             = nested_comments @post.comments.arrange(:order => :created_at)
           - else
-            no comments yet  
+            no comments yet

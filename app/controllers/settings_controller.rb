@@ -8,7 +8,7 @@ class SettingsController < ApplicationController
 		@edit_user = current_user.clone
 		if @edit_user.update_attributes(user_params)
 			flash.now[:success] = "Successfully updated settings."
-			redirect_to "/"+current_user.user_name
+			redirect_to root_url(:subdomain => current_user.subdomain)
 		end
 	end
 	private

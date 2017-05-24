@@ -6,15 +6,15 @@
         <%= @post.title%>
     </div>
     <div class="author">
-        <%= @post.user.user_name %>
+        <%=link_to @post.user.user_name ,root_url(@post,:subdomain => @post.user.user_name)%>
     </div>
     <% if current_user==@post.user %>
     <div class="postbuttons">
         <div class="editbutton">
-            <%=link_to "edit" ,edit_post_path(@post)%>
+            <%=link_to "edit" ,edit_post_url(@post,:subdomain => false)%>
         </div>
         <div class="editbutton">
-         <%=   link_to "delete" ,post_path(@post), method: :delete %>
+          <%=   link_to "delete" ,post_url(@post,  :subdomain => false), method: :delete %>
         </div>
 
     </div>

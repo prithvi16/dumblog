@@ -1,12 +1,12 @@
 .comment
-  %small.created_at= link_to(comment.user.user_name, "/"+comment.user.user_name)+ " " + time_ago_in_words(comment.created_at)+" ago"
+  %small.created_at= link_to(comment.user.user_name, root_url(:subdomain=> comment.user.user_name))+ " " + time_ago_in_words(comment.created_at)+" ago"
   .content{:id => "#{comment.id}"}= comment.content
-    
+
   .actions
-    %small=link_to "reply" ,new_post_comment_path(@post,:parent_id=>comment) 
+    %small=link_to "reply" ,new_post_comment_path(@post,:parent_id=>comment)
     -if current_user==comment.user
-      %small=link_to "edit" ,edit_post_comment_path(comment.post,comment) 
-    -if current_user==comment.user || current_user==comment.post.user  
+      %small=link_to "edit" ,edit_post_comment_path(comment.post,comment)
+    -if current_user==comment.user || current_user==comment.post.user
       %small=link_to "delete" ,post_comment_path(comment.post,comment), method: :delete
-  %br    
+  %br
 

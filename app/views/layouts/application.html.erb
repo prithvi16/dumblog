@@ -17,26 +17,46 @@
 
  <nav class="mynavbar">
         <div class="brandname">
-            HAKRlog
+            <%= link_to "HAKRlog",root_url(:subdomain => false)  %>
         </div>
+ <% if user_signed_in? %>
+<%= link_to threads_url(:subdomain => false), :role =>"presentation" do %>
+     Threads
+    <span class="badge">
 
+    <%= current_user.notifications.where(read: false).count%>
+
+    </span>
+
+<% end %>
+<%end%>
 <div class="dropdown loginbutton">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><% if user_signed_in? %> <%= current_user.user_name %> <% else %>Log In<% end %> <span class="caret"></span></a>
           <ul class="dropdown-menu">
              <% if user_signed_in? %>
-        <li><%= link_to "New post",new_post_path  %></li>
+        <li><%= link_to "New post",new_post_url(:subdomain => false)  %></li>
+        <li><%= link_to "My home",root_url(:subdomain => current_user.user_name)  %></li>
+
+         <li><%= link_to threads_url(:subdomain => false), :role =>"presentation" do %>
+     Threads
+    <span class="badge">
+
+    <%= current_user.notifications.where(read: false).count%>
+
+    </span>
+
+<% end %>
+</li>
+
+         <li><%= link_to "settings", settings_url(:subdomain => false), :method=> :get %> </li>
 
 
 
-         <li><%= link_to "settings", settings_path, :method=> :get %> </li>
-
-          <li role="presentation"><a href="/threads">Threads <span class="badge"><%= current_user.notifications.where(read: false).count%></span></a></li>
-
-         <li><%= link_to "Sign out",destroy_user_session_path ,:method=> :delete %></li>
+         <li><%= link_to "Sign out",destroy_user_session_url(:subdomain => false) ,:method=> :delete %></li>
       <% else %>
-         <li><%= link_to "login" , new_user_session_path   %> </li>
+         <li><%= link_to "login" , new_user_session_url(:subdomain => false)   %> </li>
 
-         <li><%= link_to "Signup" , new_user_registration_path %> </li>
+         <li><%= link_to "Signup" , new_user_registration_url(:subdomain => false) %> </li>
       <% end %>
           </ul>
         </div>
