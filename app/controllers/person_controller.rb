@@ -4,6 +4,9 @@ class PersonController < ApplicationController
 	def show
 
 		if @user
+
+		@following=Follow.where(follower_id:@user.id).count
+		@followers=Follow.where(following_id:@user.id).count
 		@recent_posts=Kaminari.paginate_array(@user.posts.order(created_at: :desc)).page(params[:page]).per(10)
 		@top_posts=Kaminari.paginate_array(@user.posts.order(views: :desc)).page(params[:page]).per(10)
     @most_used=@user.posts.tags_on(:tags).most_used(10)

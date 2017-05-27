@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521194805) do
+ActiveRecord::Schema.define(version: 20170527114211) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20170521194805) do
     t.integer  "post_id"
     t.index ["ancestry"], name: "index_comments_on_ancestry"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "following_id", null: false
+    t.integer  "follower_id",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+    t.index ["following_id", "follower_id"], name: "index_follows_on_following_id_and_follower_id", unique: true
+    t.index ["following_id"], name: "index_follows_on_following_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

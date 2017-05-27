@@ -21,10 +21,38 @@
           %a{:href => "#{feed_url(:format => :rss)}", :title => "RSS feed"}
             %i.icon.fa.fa-rss.fa-2x{"aria-hidden" => "true"}
           = auto_discovery_link_tag :rss, feed_url(:format => :rss)
-
+      =@user.posts.count
+      posts
+      =@following
+      Following
+      =@followers
+      followers
       .h4
         -if !@user.bio.nil?
           =@user.bio
+
+      -if @user==current_user
+        =link_to 'edit' , settings_url(:subdomain => false)
+      -else
+        - if user_signed_in?
+          -if current_user_is_following(current_user.id, @user.id)
+            = link_to 'Following', unfollow_user_path,
+                           remote: true,
+                           class: 'bluebutton',
+                           id: 'unfollow-button',
+                           method: :post
+          -else
+            = link_to 'Follow', follow_user_path,
+                        remote: true,
+                        class: 'bluebutton',
+                        id: 'follow-button',
+                        method: :post
+        - else
+          = link_to 'Follow', follow_user_path,
+                        remote: true,
+                        class: 'bluebutton',
+                        id: 'follow-button',
+                        method: :post
   .links
     = render :partial => 'layouts/links', :locals => {:user => @user}
   -if @most_used.any?
