@@ -1,0 +1,12 @@
+<% if !@posts.blank? %>
+  <% @posts.each do |post| %>
+    <%= post.title %>
+    <%= link_to "link" , post_url(post , :subdomain => post.user.subdomain) %>
+    <br/>
+  <% end %>
+  <%= paginate(@posts)    %>
+<% else  %>
+  <p>
+    tag not found
+  </p>
+<% end %>

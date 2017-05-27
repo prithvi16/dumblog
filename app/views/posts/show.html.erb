@@ -13,6 +13,10 @@
      <%= image_tag @user.gravatar_url , :class => 'proimage' %>
     <div class="author">
         <%=link_to @post.user.user_name ,root_url(@post,:subdomain => @post.user.user_name)%>
+        <% @post.tags.any? %>
+  <% @post.tags.each do |tag| %>
+  <%= link_to tag.name, tag_url(tag.name,:subdomain=> @post.user.user_name) %>
+<% end %>
     </div>
     <% if current_user==@post.user %>
     <div class="postbuttons">

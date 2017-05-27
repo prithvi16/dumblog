@@ -4,6 +4,10 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+source 'https://rails-assets.org' do
+  gem 'rails-assets-chosen'
+end
+
 gem 'simple_form'
 gem 'haml'
 gem 'redcarpet'

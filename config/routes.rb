@@ -5,12 +5,11 @@ Rails.application.routes.draw do
 
 
 
-  get 'home/index'
 
   constraints ( Subdomain ) do
   match '/' => 'person#show' , via: :get
 	match  '/rss' ,to: "person#rss" ,as: :feed , via: :get
-  get '/tags', to:"person#tag" ,as: :tag
+  get '/tags/:tag', to:"person#tag" ,as: :tag
   get    '/posts/:post_id/comments' , to: "comments#index" , as: :post_comments
 	post    '/posts/:post_id/comments' , to: "comments#create"
   get    '/posts/:post_id/comments/new' , to: "comments#new" , as: :new_post_comment
@@ -37,7 +36,7 @@ constraints ( Nosubdomain ) do
   delete '/posts/:id' , to: "posts#destroy"
 	get  '/posts' , to: "posts#index"
 
-
+  get '/tags/:tag', to:"home#tag" ,as: :tags
 
 
   get '/settings' , to: "settings#index"

@@ -1,10 +1,12 @@
+=link_to "posts from all users" , tags_url(@tag, :subdomain=> false)
+
 - if !@posts.blank?
   -@posts.each do |post|
     =post.title
-    =link_to "link" , post_path(post)
+    =link_to "link" , post_url(post, :subdomain=> post.user.subdomain)
 
     %br
-  =paginate(@posts)   
--else 
+  =paginate(@posts)
+-else
   %p
     tag not found

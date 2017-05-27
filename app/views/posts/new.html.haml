@@ -13,7 +13,7 @@
       = simple_form_for @post , :html => {:class => 'field'}  do |f|
         =f.input :title  , :class => 'form-control'
         =f.input :body , :input_html => { :rows => 20 , :id => "some-textarea" , }
-        =f.input :tag_list
+        =f.input :tag_list ,:label => "Tags* (seperated by commas)"
         =f.button :submit ,:class => "bluebutton"
 :javascript
   $(document).on('turbolinks:load', function() {

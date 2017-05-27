@@ -27,6 +27,9 @@
           =@user.bio
   .links
     = render :partial => 'layouts/links', :locals => {:user => @user}
+  -if @most_used.any?
+    - @most_used.each do |tag|
+      = link_to tag.name, tag_url(tag.name,:subdomain=> @user.user_name)
 
   %br
   .row

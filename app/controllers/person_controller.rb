@@ -6,13 +6,15 @@ class PersonController < ApplicationController
 		if @user
 		@recent_posts=Kaminari.paginate_array(@user.posts.order(created_at: :desc)).page(params[:page]).per(10)
 		@top_posts=Kaminari.paginate_array(@user.posts.order(views: :desc)).page(params[:page]).per(10)
+    @most_used=@user.posts.tags_on(:tags).most_used(10)
+
         end
 	end
 
 	def tag
 
 		tag=params[:tag]
-
+      @tag=tag
 		@posts=Kaminari.paginate_array(@user.posts.tagged_with(tag)).page(params[:page]).per(10)
 		if @post.blank?
 	     render status: 404
