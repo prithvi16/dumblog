@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   put  '/posts/:post_id/comments/:id' , to: "comments#update"
 	delete  '/posts/:post_id/comments/:id' , to: "comments#destroy"
 	get    '/posts/:id' , to: "posts#show" , as: :post
+  post   '/posts/:id/like' , to: "posts#like" ,as: :like
+ post   '/posts/:id/dislike' , to: "posts#dislike" ,as: :dislike
   post '/follow_user', to: 'relationships#follow_user', as: :follow_user
   post '/unfollow_user', to: 'relationships#unfollow_user', as: :unfollow_user
 end

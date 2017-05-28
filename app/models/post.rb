@@ -6,6 +6,7 @@ class Post < ApplicationRecord
 	belongs_to :user
 	acts_as_taggable
 	acts_as_taggable_on :tags
+	acts_as_votable
 	has_many :comments
 
 	 extend FriendlyId

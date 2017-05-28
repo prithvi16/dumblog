@@ -24,7 +24,7 @@ maximum: 16 } , uniqueness: { case_sensitive: false }
   has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following, through: :following_relationships, source: :following
 
-
+ acts_as_voter
 
 
 	def follow(user_id)

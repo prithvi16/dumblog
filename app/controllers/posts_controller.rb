@@ -1,6 +1,6 @@
 
 class PostsController < ApplicationController
-	before_action :set_post, only: [:show]
+	before_action :set_post, only: [:show , :like ]
 
 	before_action :set_new_post , only: [:update ,:destroy ,:edit]
 
@@ -12,7 +12,14 @@ skip_before_filter :verify_authenticity_token, :only => :destroy
 		@posts=Post.all
 
 	end
-
+def like
+  if @post.liked_by current_user
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
+    end
+end
 
 	def new
 		@post=current_user.posts.build

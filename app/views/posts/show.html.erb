@@ -36,6 +36,14 @@
       </div>
 
 
+
+<% if  !current_user.voted_for? @post %>
+
+<%=  link_to 'upvote', like_path(@post) , class: 'bluebutton', method: :post , id: 'upvote'%>
+
+<% end %>
+<%= @post.votes_for.size %>
+votes
 <div class="commentform">
 <%= form_for [@post, @post.comments.new] do |f| %>
 
