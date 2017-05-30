@@ -36,12 +36,15 @@
       </div>
 
 
-
+ <% if user_signed_in? %>
 <% if  !current_user.voted_for? @post %>
+<i class="fa fa-thumbs-up" aria-hidden="true"></i>
 
 <%=  link_to 'upvote', like_path(@post) , class: 'bluebutton', method: :post , id: 'upvote'%>
 
 <% end %>
+<% end %>
+
 <%= @post.votes_for.size %>
 votes
 <div class="commentform">

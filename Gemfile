@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'acts_as_votable'
-
+gem 'whenever', :require => false
 gem 'simple_form'
 gem 'haml'
 gem 'redcarpet'

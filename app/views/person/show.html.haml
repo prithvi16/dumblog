@@ -10,12 +10,15 @@
         .h1
           =@user.user_name
         %p.cicons
-          -if @user.twitter
+          -if !@user.twitter.blank?
             %a{:href => "#{@user.twitter}", :title => "twitter profile"}
               %i.icon.fa.fa-twitter.fa-2x{"aria-hidden" => "true"}
-          -if @user.github
+          -if !@user.github.blank?
             %a{:href => "#{@user.github}", :title => "github profile"}
               %i.icon.fa.fa-github.fa-2x{"aria-hidden" => "true"}
+          -if !@user.stackoverflow.blank?
+            %a{:href => "#{@user.stackoverflow}", :title => "stack overflow profile"}
+              %i.icon.fa.fa-stack-overflow.fa-2x{"aria-hidden" => "true"}
           %a{:href => "#{"mailto:"+@user.email}", :title => "email"}
             %i.icon.fa.fa-envelope.fa-2x{"aria-hidden" => "true"}
           %a{:href => "#{feed_url(:format => :rss)}", :title => "RSS feed"}

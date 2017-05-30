@@ -22,11 +22,11 @@
     margin-left: 30px;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 body {
-    font-family: 'Montserrat Alternates', sans-serif;
     max-width: 80%;
     margin: 0 auto;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .proimage {
@@ -37,6 +37,9 @@ body {
 .brandname {
     font-weight: bolder;
     font-size: 18px;
+    a {
+        color: orangered;
+    }
     color: orangered;
 }
 
@@ -69,11 +72,14 @@ body {
 
 .links {
     display: flex;
-    font-size: 14px;
+    font-size: 16px;
     margin: 10px auto 40px auto;
     max-width: 40em;
     justify-content: space-between;
-    color: #0275d8;
+    color: black;
+    a {
+        color: black;
+    }
     flex-wrap: wrap;
     align-content: space-between;
 }
@@ -121,6 +127,7 @@ hr {
     color: white;
     padding: 5px;
     min-width: 40px;
+    max-width: 80px;
     border-radius: 2px;
     font-weight: bold;
     background-color: #0275d8;
