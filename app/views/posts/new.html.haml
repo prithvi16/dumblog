@@ -14,6 +14,8 @@
         =f.input :title  , :class => 'form-control'
         =f.input :body , :input_html => { :rows => 20 , :id => "some-textarea" , }
         =f.input :tag_list ,:label => "Tags* (seperated by commas)"
+        = flash[:recaptcha_error]
+        = recaptcha_tags
         =f.button :submit ,:class => "bluebutton"
 :javascript
   $(document).on('turbolinks:load', function() {

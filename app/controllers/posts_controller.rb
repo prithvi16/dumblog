@@ -29,7 +29,7 @@ end
 
 	def create
 		@post=current_user.posts.create(post_params)
-		if   @post.save
+		if  verify_recaptcha(model: @post) &&  @post.save
 		flash[:notice] = "Post succesfulyy created"
 		redirect_to(post_url(@post,:subdomain => @post.user.subdomain))
 	else

@@ -17,6 +17,7 @@ gem 'gravtastic'
 gem 'bootstrap-sass'
 gem 'ancestry'
 gem 'coderay'
+gem "recaptcha", require: "recaptcha/rails"
 gem 'kaminari'
 gem 'rails-bootstrap-markdown'
 gem "font-awesome-rails"
