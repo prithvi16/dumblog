@@ -1,9 +1,11 @@
 class User < ApplicationRecord
 	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable and :omniauthable
+	# :confirmable, :lockable, :timeoutable and
 	 acts_as_tagger
 	devise :database_authenticatable, :registerable,
 	:recoverable, :rememberable, :trackable, :validatable
+	devise :omniauthable, :omniauth_providers => [:github]
+
 
 	validates :user_name, presence: true, length: { minimum: 4,
 	maximum: 16 } , uniqueness: { case_sensitive: false }
@@ -34,6 +36,12 @@ maximum: 16 } , uniqueness: { case_sensitive: false }
   def unfollow(user_id)
     following_relationships.find_by(following_id: user_id).destroy
   end
+
+
+
+
+
+
 
 
 

@@ -48,7 +48,7 @@ constraints ( Nosubdomain ) do
   post "/settings" => "settings#update"
   devise_for :users ,:controllers => { registrations:
 	'registrations' ,
-  sessions: 'sessions'
+  sessions: 'sessions' , omniauth_callbacks: 'omniauth_callbacks'
 
 }
 	root to: "home#index"
