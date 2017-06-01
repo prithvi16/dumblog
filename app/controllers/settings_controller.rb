@@ -15,7 +15,7 @@ class SettingsController < ApplicationController
 
 	def user_params
 		params.require(:user).permit(
-			:bio , :link1 , :link1t, :link2 , :link2t, :link3 , :link3t, :link4 , :link4t,:link5 , :link5t, :link6 , :link6t , :twitter , :github ,:blog_name,:stackoverflow
+			:bio , :link1 , :link1t, :link2 , :link2t, :link3 , :link3t, :link4 , :link4t,:link5 , :link5t, :link6 , :link6t , :twitter , :github ,:blog_name,:stackoverflow,:gravatar
 		)
 	end
 

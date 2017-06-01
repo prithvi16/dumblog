@@ -10,7 +10,9 @@
     <div class="posttitle">
         <%= @post.title%>
     </div>
+    <% if @post.user.gravatar %>
      <%= image_tag @user.gravatar_url , :class => 'proimage' %>
+     <% end %>
     <div class="author">
         <%=link_to @post.user.user_name ,root_url(@post,:subdomain => @post.user.user_name)%>
         <% @post.tags.any? %>

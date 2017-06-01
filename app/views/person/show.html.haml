@@ -4,7 +4,7 @@
 
   .columns
     .column.is-one-third.is-offset-one-third.headerpro
-      %figure.image.is-128x128
+      -if @user.gravatar
         = image_tag @user.gravatar_url , :class => 'proimage'
       %p
         .h1
