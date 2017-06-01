@@ -177,6 +177,7 @@ GEM
     recaptcha (4.3.1)
       json
     redcarpet (3.4.0)
+    redcarpet_yt (0.1.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -253,6 +254,7 @@ DEPENDENCIES
   rails-bootstrap-markdown
   recaptcha
   redcarpet
+  redcarpet_yt
   sass-rails (~> 5.0)
   simple_form
   spring
