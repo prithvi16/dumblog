@@ -87,6 +87,13 @@
             %br
             %small=post.created_at
         =paginate(@top_posts)
+  .archives
+    %h3 Blog Archive
+    - @post_months.sort.reverse.each do |month, posts|
+      %h4= h month.strftime("%B %Y")
+      %ul
+        - for post in posts
+          %li= h link_to post.title, post_url(post ,:subdomain=>@user.subdomain)
 
 
 

@@ -7,11 +7,15 @@ class PersonController < ApplicationController
 
 		@following=Follow.where(follower_id:@user.id).count
 		@followers=Follow.where(following_id:@user.id).count
+
 		@recent_posts=Kaminari.paginate_array(@user.posts.order(created_at: :desc)).page(params[:page]).per(10)
 		@top_posts=Kaminari.paginate_array(@user.posts.order(views: :desc)).page(params[:page]).per(10)
     @most_used=@user.posts.tags_on(:tags).most_used(10)
+		@posts = @user.posts(:select => "title, id, posted_at", :order => "posted_at DESC")
+    @post_months = @posts.group_by { |t| t.created_at.beginning_of_month }
+end
 
-        end
+
 	end
 
 	def tag
