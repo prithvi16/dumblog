@@ -1,0 +1,27 @@
+
+<div class="container">
+
+
+<% @notifications.each do |n| %>
+  <%= link_to n.comment.user.user_name , root_url(:subdomain=>n.comment.user.user_name) %>
+  commnted on
+  <% if n.comment.parent %>
+    <em>
+     <%=link_to truncate(n.comment.parent.content ,length:40), post_url(n.comment.root.post,:anchor=> "#{n.comment.parent.id}" ,:subdomain =>n.comment.root.post.user.user_name ) %>
+    </em>
+  <% else %>
+    <em>
+      <%=link_to truncate(n.comment.post.title ,length:40) ,post_url(n.comment.post , :anchor=> "#{n.comment.id}", :subdomain => n.comment.post.user.user_name)  %>
+
+    </em>
+  <% end %>
+  <br/>
+  <%= n.comment.content %>
+
+  <hr/>
+<% end %>
+<%= paginate(@notifications)%>
+</div>
+
+
+

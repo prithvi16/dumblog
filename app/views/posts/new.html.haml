@@ -1,4 +1,24 @@
-= simple_form_for @post do |f|
-    =f.input :title 
-    =f.input :body
-    =f.button :submit
+.container
+  .row
+    .col-md-10
+      - if @post.errors.any?
+        .panel.panel-default
+          .panel-body
+
+            .bg-danger
+              %h3 Uh-oh!
+              %ul
+                - @post.errors.full_messages.each do |msg|
+                  %li= msg
+      = simple_form_for @post , :html => {:class => 'field'}  do |f|
+        =f.input :title  , :class => 'form-control'
+        =f.input :body , :input_html => { :rows => 20 , :id => "some-textarea" , }
+        =f.input :tag_list ,:label => "Tags* (seperated by commas)"
+        = flash[:recaptcha_error]
+        = recaptcha_tags
+        =f.button :submit ,:class => "bluebutton"
+:javascript
+  $(document).on('turbolinks:load', function() {
+
+  $("#some-textarea").markdown({autofocus:false,savable:false})
+  });

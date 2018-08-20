@@ -1,0 +1,23 @@
+// Place all the styles related to the person controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.proimage {
+    border-radius: 80px;
+}
+
+.headerpro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.cicons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon {
+    padding: 5px;
+}

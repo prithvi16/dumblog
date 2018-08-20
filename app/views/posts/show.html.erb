@@ -1,0 +1,79 @@
+<div class="links">
+<%= render :partial => 'layouts/links', :locals => {:user => @post.user} %>
+
+</div>
+
+<div class="date">
+        <%= time_tag @post.created_at %>
+    </div>
+
+    <div class="posttitle">
+        <%= @post.title%>
+    </div>
+    <% if @post.user.gravatar %>
+     <%= image_tag @user.gravatar_url , :class => 'proimage' %>
+     <% end %>
+    <div class="author">
+        <%=link_to @post.user.user_name ,root_url(@post,:subdomain => @post.user.user_name)%>
+        <% @post.tags.any? %>
+  <% @post.tags.each do |tag| %>
+  <%= link_to tag.name, tag_url(tag.name,:subdomain=> @post.user.user_name) %>
+<% end %>
+    </div>
+    <% if current_user==@post.user %>
+    <div class="postbuttons">
+        <div class="editbutton">
+            <%=link_to "edit" ,edit_post_url(@post,:subdomain => false)%>
+        </div>
+        <div class="editbutton">
+          <%=   link_to "delete" ,post_url(@post,  :subdomain => false), method: :delete %>
+        </div>
+
+    </div>
+    <% end %>
+
+    <div class="markdown-body">
+     <%= markdown2 (@post.body)%>
+
+      </div>
+
+
+ <% if user_signed_in? %>
+<% if  !current_user.voted_for? @post %>
+<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+
+<%=  link_to 'upvote', like_path(@post) , class: 'bluebutton', method: :post , id: 'upvote'%>
+
+<% end %>
+<% end %>
+
+<%= @post.votes_for.size %>
+votes
+<div class="commentform">
+<%= form_for [@post, @post.comments.new] do |f| %>
+
+
+      <%= f.text_area :content ,:class => "form-control commentbox"  %>
+
+
+      <%= f.button :comment , :class => "bluebutton" %>
+
+
+<% end %>
+
+</div>
+
+<div class="comsection">
+<h3>comments</h3>
+   <% if @post.comments.exists? %>
+<%= nested_comments @post.comments.arrange(:order => :created_at) %>
+  <% else %>
+    no comments yet
+  <% end %>
+
+
+</div>
+
+
+
+

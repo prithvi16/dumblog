@@ -1,0 +1,106 @@
+-if @user
+  .container-fluid
+    %h1=@user.blog_name
+
+  .columns
+    .column.is-one-third.is-offset-one-third.headerpro
+      -if @user.gravatar
+        = image_tag @user.gravatar_url , :class => 'proimage'
+      %p
+        .h1
+          =@user.user_name
+        %p.cicons
+          -if !@user.twitter.blank?
+            %a{:href => "#{@user.twitter}", :title => "twitter profile"}
+              %i.icon.fa.fa-twitter.fa-2x{"aria-hidden" => "true"}
+          -if !@user.github.blank?
+            %a{:href => "#{@user.github}", :title => "github profile"}
+              %i.icon.fa.fa-github.fa-2x{"aria-hidden" => "true"}
+          -if !@user.stackoverflow.blank?
+            %a{:href => "#{@user.stackoverflow}", :title => "stack overflow profile"}
+              %i.icon.fa.fa-stack-overflow.fa-2x{"aria-hidden" => "true"}
+          %a{:href => "#{"mailto:"+@user.email}", :title => "email"}
+            %i.icon.fa.fa-envelope.fa-2x{"aria-hidden" => "true"}
+          %a{:href => "#{feed_url(:format => :rss)}", :title => "RSS feed"}
+            %i.icon.fa.fa-rss.fa-2x{"aria-hidden" => "true"}
+          = auto_discovery_link_tag :rss, feed_url(:format => :rss)
+      =@user.posts.count
+      posts
+      =@following
+      Following
+      =@followers
+      followers
+      .h4
+        -if !@user.bio.nil?
+          =@user.bio
+
+      -if @user==current_user
+        =link_to 'edit' , settings_url(:subdomain => false)
+      -else
+        - if user_signed_in?
+          -if current_user_is_following(current_user.id, @user.id)
+            = link_to 'Following', unfollow_user_path,
+                           remote: true,
+                           class: 'bluebutton',
+                           id: 'unfollow-button',
+                           method: :post
+          -else
+            = link_to 'Follow', follow_user_path,
+                        remote: true,
+                        class: 'bluebutton',
+                        id: 'follow-button',
+                        method: :post
+        - else
+          = link_to 'Follow', follow_user_path,
+                        remote: true,
+                        class: 'bluebutton',
+                        id: 'follow-button',
+                        method: :post
+  .links
+    = render :partial => 'layouts/links', :locals => {:user => @user}
+  -if @most_used.any?
+    - @most_used.each do |tag|
+      = link_to tag.name, tag_url(tag.name,:subdomain=> @user.user_name)
+
+  %br
+  .row
+    .col-md-6.col-sm-10
+      %header.card-header
+        %p.h3
+          Recent
+      .card-content
+        -@recent_posts.each do |post|
+          .content
+            =link_to post.title , post_url(post, :subdomain => @user.subdomain)
+
+            %br
+            %small=post.created_at
+        =paginate(@recent_posts)
+    .col-md-6.col-sm-10
+      %header.card-header
+        %p.h3
+          top
+      .card-content
+        -@top_posts.each do |post|
+          .content
+            =link_to post.title , post_url(post, :subdomain => @user.subdomain)
+            %br
+            %small=post.created_at
+        =paginate(@top_posts)
+  .archives
+    %h3 Blog Archive
+    - @post_months.sort.reverse.each do |month, posts|
+      %h4= h month.strftime("%B %Y")
+      %ul
+        - for post in posts
+          %li= h link_to post.title, post_url(post ,:subdomain=>@user.subdomain)
+
+
+
+-else
+  %p="user not found"
+
+
+
+
+

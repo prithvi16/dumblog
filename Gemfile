@@ -4,8 +4,24 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+gem  'redcarpet_yt'
+gem 'omniauth-github'
+gem 'acts_as_votable'
+gem 'whenever', :require => false
 gem 'simple_form'
 gem 'haml'
+gem 'redcarpet'
+gem 'devise'
+gem 'acts-as-taggable-on'
+gem 'friendly_id'
+gem 'gravtastic'
+gem 'bootstrap-sass'
+gem 'ancestry'
+gem 'coderay'
+gem "recaptcha", require: "recaptcha/rails"
+gem 'kaminari'
+gem 'rails-bootstrap-markdown'
+gem "font-awesome-rails"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use sqlite3 as the database for Active Record

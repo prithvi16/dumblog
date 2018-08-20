@@ -1,2 +1,44 @@
-=@post.title
-=@post.body
+
+
+
+.container
+  %h1=@post.user.blog_name
+  .row
+    .col-md-10.col-md-offset-1
+      %h1.h1.title=@post.title
+
+      .text-center
+        %h4=link_to @post.user.user_name , "/"+@post.user.user_name
+        on
+        =@post.created_at
+        %p
+          tags:
+          #{raw @post.tag_list.map { |t| link_to t, tag_path(@post.user.user_name,t) }.join(', ')}
+      %br
+
+
+
+
+      -if current_user==@post.user
+        .btn.btn-success=link_to "delete post" ,post_path(@post), method: :delete ,:class =>  "button is-info"
+        .btn.btn-success=link_to "edit post" ,edit_post_path(@post) ,:class =>  "button is-info"
+        .pull-right=@post.views.to_s + " views"
+
+      %br
+      %hr
+      .markdown-body
+        =markdown2 (@post.body)
+      =render partial: "layouts/sharing" , locals:{title: @post.title}
+
+      = form_for [@post, @post.comments.new] do |f|
+        .field
+          %p.content
+            = f.text_area :content ,:class => "form-control"
+          %p.content
+            = f.button :comment , :class => "btn primary"
+      .panel.panel-default
+        .panel-body
+          -if @post.comments
+            = nested_comments @post.comments.arrange(:order => :created_at)
+          - else
+            no comments yet

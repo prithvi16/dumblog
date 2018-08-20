@@ -1,14 +1,91 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <title>Dumblog</title>
     <%= csrf_meta_tags %>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
+  </head>
   <body>
-    <%= yield %>
+
+
+
+ <nav class="mynavbar">
+        <div class="brandname">
+            <%= link_to "HAKRlog",root_url(:subdomain => false)  %>
+        </div>
+ <% if user_signed_in? %>
+<%= link_to threads_url(:subdomain => false), :role =>"presentation" do %>
+     <i class="fa fa-bell" aria-hidden="true"></i>
+    <span class="badge">
+
+    <%= current_user.notifications.where(read: false).count%>
+
+    </span>
+
+<% end %>
+<%end%>
+<div class="dropdown loginbutton">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><% if user_signed_in? %> <%= current_user.user_name %> <% else %>Log In<% end %> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+             <% if user_signed_in? %>
+        <li><%= link_to "New post",new_post_url(:subdomain => false)  %></li>
+        <li><%= link_to "My home",root_url(:subdomain => current_user.user_name)  %></li>
+
+         <li><%= link_to threads_url(:subdomain => false), :role =>"presentation" do %>
+     Threads
+    <span class="badge">
+
+    <%= current_user.notifications.where(read: false).count%>
+
+    </span>
+
+<% end %>
+</li>
+
+         <li><%= link_to "settings", settings_url(:subdomain => false), :method=> :get %> </li>
+
+
+
+         <li><%= link_to "Sign out",destroy_user_session_url(:subdomain => false) ,:method=> :delete %></li>
+      <% else %>
+         <li><%= link_to "login" , new_user_session_url(:subdomain => false)   %> </li>
+
+         <li><%= link_to "Signup" , new_user_registration_url(:subdomain => false) %> </li>
+      <% end %>
+          </ul>
+        </div>
+    </nav>
+
+
+
+    <% if notice %>
+      <p class="alert alert-success">
+        <%= notice %>
+      </p>
+      <% end %>
+      <% if alert %>
+      <p class="alert alert-danger">
+        <%= alert %>
+      </p>
+
+
+      <% end %>
+      <%= yield %>
+
+
+      <footer class="webfoot">
+      <p>about | privacy policy  | FAQ |  Support | Feedback | Made with love by @pvsukale </p>
+
+      </footer>
+
   </body>
+  <script>$(document).on('turbolinks:load', function() {
+   console.log('(document).turbolinks:load')
+});</script>
 </html>
